@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5">
+    <h1 class="mb-4 text-center">{{ company_details.name }} - Company Details</h1>
+
+    <div class="card mb-5 shadow-lg">
+        <div class="row g-0">
+            <div class="col-md-8">
+                <div class="card-body p-4">
+                    <h2 class="card-title">{{ company_details.name }}</h2>
+                    <h5 class="card-subtitle mb-2 text-muted">CEO: {{ company_details.ceo }}</h5>
+                    <!-- Add more company details here if needed -->
+                    <p class="mt-4 text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae dui a velit ullamcorper consectetur non a erat.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <h4 class="mb-4">{{ company_details.name }} Products</h4>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        {% for product in company_details.company.all %}
+        <div class="col">
+            <div class="card h-100 product-card shadow-sm">
+                <!-- Added image for product -->
+                <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.product_name }}" style="object-fit: cover; height: 200px;">
+                
+                <div class="card-body text-center">
+                    <h5 class="card-title mb-3">{{ product.product_name }}</h5>
+                    <p class="text-muted">A brief description of the product can go here to provide context.</p>
+                </div>
+                <div class="card-footer">
+                    <a href="{{ product.get_absolute_url }}" class="btn btn-outline-primary w-100">View Product</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<style>
+    .product-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .product-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+    .card-title {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #2c3e50;
+    }
+    .btn-outline-primary {
+        border-radius: 30px;
+        font-weight: bold;
+    }
+    .btn-outline-primary:hover {
+        background-color: #3498db;
+        color: #ffffff;
+    }
+    .card-img-top {
+        border-bottom: 3px solid #3498db;
+    }
+</style>
+{% endblock %}
