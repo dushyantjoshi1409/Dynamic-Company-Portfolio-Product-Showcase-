@@ -69,7 +69,11 @@
             {% for company in allcompanies %}
             <div class="col-md-4 mb-4">
                 <div class="card company-card shadow-sm">
-                    <img src="{{ company.logo.url }}" class="card-img-top" alt="{{ company.logo }} Logo">
+                    {% if company.logo%}
+                    <img src="{{ company.logo.url }}" class="card-img-top" alt="...">
+                    {% else %}
+                    <p>No img</p>
+                    {% endif %}                    
                     <div class="card-body text-center">
                         <h5 class="card-title">{{ company.name }}</h5>
                         <p class="card-text"><strong>CEO:</strong> {{ company.ceo }}</p>

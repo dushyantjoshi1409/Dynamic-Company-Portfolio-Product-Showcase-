@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.urls import reverse
 class Company(models.Model):
     name = models.CharField(max_length=100)
     ceo = models.CharField(max_length=50)
@@ -9,6 +9,8 @@ class Company(models.Model):
 
     def __str__(self):
         return self.name
+    def get_absolute_url(self):
+        return reverse('detail', args=[self.pk])
 
 class Product(models.Model):
     company = models.ForeignKey(Company, related_name='company', on_delete=models.CASCADE)

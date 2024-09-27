@@ -1,5 +1,5 @@
 from django.shortcuts import render, HttpResponse
-from django.views.generic import View, TemplateView, ListView, DetailView, CreateView
+from django.views.generic import View, TemplateView, ListView, DetailView, CreateView, UpdateView
 from .models import Company 
 
 class Myclass(TemplateView):
@@ -18,3 +18,8 @@ class CompanyDetails(DetailView):
 class AddCompany(CreateView):
     model = Company
     fields = "__all__"
+
+class EditCompany(UpdateView):
+    model = Company
+    fields = ['name', 'ceo', 'logo']
+# class AddPro
